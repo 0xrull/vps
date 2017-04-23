@@ -220,6 +220,7 @@ echo "MRTG     : http://$MYIP/mrtg/"  | tee -a log-install.txt
 echo "Timezone : Asia/Jakarta"  | tee -a log-install.txt
 echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
+echo "Autokill Multilogin : [on]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Log Installasi --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
