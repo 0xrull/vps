@@ -151,6 +151,7 @@ wget -O /usr/bin/trial "https://raw.githubusercontent.com/gidhanbagus/scriptdebi
 wget -O speedtest.py "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
 wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/speedtest.sh"
 wget -O bench-network.sh "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/bench-network.sh"
+wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/autokill"
 wget -O ps_mem.py "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
 chmod +x /usr/bin/akun
 chmod +x /usr/bin/buat
@@ -161,9 +162,21 @@ chmod +x bench-network.sh
 chmod +x speedtest.py
 chmod +x /usr/bin/speedtest
 chmod +x ps_mem.py
+chmod +x /usr/bin/autokill
 
 # cron
 echo "0 0 * * * root /bin/sh /usr/bin/reboot" > /etc/cron.d/reboot
+echo "* * * * * root /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 5; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 15; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 20; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 25; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 30; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 35; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 40; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 45; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 50; /usr/bin/autokill" > /etc/cron.d/autokill
+echo "* * * * * root sleep 55; /usr/bin/autokill" > /etc/cron.d/autokill
 
 # finalisasi
 chown -R www-data:www-data /home/vps/public_html
