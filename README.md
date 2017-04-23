@@ -40,6 +40,7 @@ Layanan yang diaktifkan pada script ini:
  - **Timezone** : Asia/Jakarta
  - **Fail2Ban** : [on]
  - **IPv6**     : [off]
+ - **Autokill Multilogin**     : [on]
 
 Beberapa fitur yang tersedia saat ini:
 
