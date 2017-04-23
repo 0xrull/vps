@@ -1,0 +1,1 @@
+wget https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/sshd_config && cp -f sshd_config /etc/ssh/sshd_config
