@@ -165,7 +165,7 @@ chmod +x ps_mem.py
 chmod +x /usr/bin/autokill
 
 # cron
-echo "0 0 * * * root /bin/sh /usr/bin/reboot" > /etc/cron.d/reboot
+echo "0 0 * * * root /usr/bin/reboot" > /etc/cron.d/reboot
 echo "* * * * * root /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 5; /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 15; /usr/bin/autokill" > /etc/cron.d/autokill
