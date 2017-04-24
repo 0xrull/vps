@@ -150,22 +150,23 @@ wget -O /usr/bin/gusur "https://raw.githubusercontent.com/gidhanbagus/scriptdebi
 wget -O /usr/bin/trial "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/user-trial.sh"
 wget -O speedtest.py "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
 wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/speedtest.sh"
-wget -O bench-network.sh "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/bench-network.sh"
+wget -O /usr/bin/bench "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/bench-network.sh"
 wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/autokill"
-wget -O ps_mem.py "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
+wget -O /usr/bin/ram "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
 chmod +x /usr/bin/akun
 chmod +x /usr/bin/buat
 chmod +x /usr/bin/cek
 chmod +x /usr/bin/gusur
 chmod +x /usr/bin/trial
-chmod +x bench-network.sh
+chmod +x /usr/bin/bench
 chmod +x speedtest.py
 chmod +x /usr/bin/speedtest
-chmod +x ps_mem.py
+chmod +x /usr/bin/ram
 chmod +x /usr/bin/autokill
 
 # cron
 echo "0 */12 * * * root /usr/bin/reboot" > /etc/cron.d/reboot
+echo "0 */12 * * * root /usr/bin/gusur" > /etc/cron.d/gusur
 echo "* * * * * root /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 5; /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 15; /usr/bin/autokill" > /etc/cron.d/autokill
@@ -211,6 +212,8 @@ echo "cek : untuk melihat siapa saja yang sedang aktif"  | tee -a log-install.tx
 echo "gusur : untuk menghapus user yang masa aktifnya sudah habis"  | tee -a log-install.txt
 echo "trial : untuk membuat akun trial"  | tee -a log-install.txt
 echo "speedtest : untuk tes speed vps"  | tee -a log-install.txt
+echo "ram : untuk melihat pemakaian ram vps"  | tee -a log-install.txt
+echo "bench : untuk melihat performa vps"  | tee -a log-install.txt
 echo "--------------------------------------"  | tee -a log-install.txt
 echo "Fitur lain"  | tee -a log-install.txt
 echo "--------------------------------------"  | tee -a log-install.txt
