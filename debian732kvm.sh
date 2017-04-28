@@ -2,16 +2,12 @@
 # Script Auto Installer By Gidhan Bagus Algary
 # www.algatekno.com
 
-# data pemilik server
-read -p "Nama Pemilik Server: " namap
-read -p "Email Pemilik Server: " nhp
-
 # Banner SSH
 echo "-=[ Selamat Datang Di Server Alga Tekno ]=-" >> /etc/pesan
 echo "Terms Of Service :" >> /etc/pesan
-echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Phising, Spam, dan Torrent; " >> /etc/pesan
+echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Phising, Spam, dll; " >> /etc/pesan
 echo "2. Dilarang Multilogin, Jika Melanggar Akun Akan Di Blokir Otomatis Oleh Server; " >> /etc/pesan
-echo "Server by $namap ( $nhp )" >> /etc/pesan
+echo "Server by Gidhan Bagus Algary ( gidhanbagusalgary@gmail.com )" >> /etc/pesan
 echo "WA : 0895354663822" >> /etc/pesan
 echo "Visit : www.algatekno.com" >> /etc/pesan
 
@@ -121,7 +117,7 @@ service ssh restart
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-echo "OPTIONS=\"-p 80 -p 109 -p 110 -b /etc/pesan\"" > /etc/default/dropbear
+echo "OPTIONS=\"-p 80 -p 109 -p 110 -p 443 -b /etc/pesan\"" > /etc/sysconfig/dropbear
 echo "/bin/false" >> /etc/shells
 service ssh restart
 service dropbear restart
