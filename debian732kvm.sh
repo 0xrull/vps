@@ -1,4 +1,22 @@
 #!/bin/bash
+# Script Auto Installer By Gidhan Bagus Algary
+# www.algatekno.com
+
+# data pemilik server
+read -p "Nama Pemilik Server: " namap
+read -p "Email Pemilik Server: " nhp
+read -p "Masukkan username untuk akun default: " dname
+
+# Banner SSH
+echo "-=[ Selamat Datang Di Server Alga Tekno ]=-" >> /etc/pesan
+echo "Terms Of Service :" >> /etc/pesan
+echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Phising, Spam, dan Torrent; " >> /etc/pesan
+echo "2. Dilarang Multilogin, Jika Melanggar Akun Akan Di Blokir Otomatis Oleh Server; " >> /etc/pesan
+echo "Server by $namap ( $nhp )" >> /etc/pesan
+echo "WA : 0895354663822" >> /etc/pesan
+echo "Visit : www.algatekno.com" >> /etc/pesan
+
+echo "Banner /etc/pesan" >> /etc/ssh/sshd_config
 
 # go to root
 cd
@@ -104,7 +122,7 @@ service ssh restart
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80 -p 109 -p 110"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 service ssh restart
 service dropbear restart
@@ -124,7 +142,8 @@ sed -i '/SixXS IPv6/d' config.php
 cd
 
 # install fail2ban
-apt-get -y install fail2ban;service fail2ban restart
+apt-get -y install fail2ban
+service fail2ban restart
 
 # install squid3
 apt-get -y install squid3
@@ -200,8 +219,8 @@ echo ""  | tee -a log-install.txt
 echo "Layanan yang aktif pada server ini :"  | tee -a log-install.txt
 echo "--------------------------------------"  | tee -a log-install.txt
 echo "OpenSSH  : 22, 143"  | tee -a log-install.txt
-echo "Dropbear : 109, 110, 443"  | tee -a log-install.txt
-echo "Squid3   : 80 (limit to IP SSH)"  | tee -a log-install.txt
+echo "Dropbear : 80, 109, 110, 443"  | tee -a log-install.txt
+echo "Squid3   : 8080, 3128 (limit to IP SSH)"  | tee -a log-install.txt
 echo "Badvpn   : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo "--------------------------------------"  | tee -a log-install.txt
 echo "Script Command"  | tee -a log-install.txt
