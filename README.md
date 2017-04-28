@@ -31,8 +31,8 @@ Feature
 Layanan yang diaktifkan pada script ini:
 
  - **Port OpenSSH** : 22, 143
- - **Port Dropbear** : 109, 110, 443
- - **SquidProxy**    : 80 (limit to IP SSH)
+ - **Port Dropbear** : 80, 109, 110, 443
+ - **SquidProxy**    : 8080, 3128 (limit to IP SSH)
  - **badvpn**   : badvpn-udpgw port 7300
  - **Webmin**   : http://IP:10000/
  - **vnstat**   : http://IP:81/vnstat/
