@@ -5,7 +5,6 @@
 # data pemilik server
 read -p "Nama Pemilik Server: " namap
 read -p "Email Pemilik Server: " nhp
-read -p "Masukkan username untuk akun default: " dname
 
 # Banner SSH
 echo "-=[ Selamat Datang Di Server Alga Tekno ]=-" >> /etc/pesan
