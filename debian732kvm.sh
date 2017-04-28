@@ -3,13 +3,11 @@
 # www.algatekno.com
 
 # Banner SSH
-echo "-=[ Selamat Datang Di Server Alga Tekno ]=-" >> /etc/pesan
-echo "Terms Of Service :" >> /etc/pesan
-echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Phising, Spam, dll; " >> /etc/pesan
-echo "2. Dilarang Multilogin, Jika Melanggar Akun Akan Di Blokir Otomatis Oleh Server; " >> /etc/pesan
-echo "Server by Gidhan Bagus Algary ( gidhanbagusalgary@gmail.com )" >> /etc/pesan
-echo "WA : 0895354663822" >> /etc/pesan
-echo "Visit : www.algatekno.com" >> /etc/pesan
+echo " | Selamat Datang Di Server Alga Tekno | " >> /etc/pesan
+echo "Peraturan Menggunakan SSH : " >> /etc/pesan
+echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Spam, Torrent, dll | " >> /etc/pesan
+echo "2. Dilarang Multilogin, Jika Melanggar Akun Akan Di Blokir Otomatis Oleh Server | " >> /etc/pesan
+echo "Powered by Gidhan Bagus Algary - WA : 0895354663822" >> /etc/pesan
 
 echo "Banner /etc/pesan" >> /etc/ssh/sshd_config
 
