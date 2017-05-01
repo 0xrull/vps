@@ -17,13 +17,13 @@ Installation
 -------------
 Untuk instalasi script silahkan jalankan perintah berikut:
 ```sh
-$ wget https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/debian732kvm.sh
+$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian732kvm.sh
 $ bash debian732kvm.sh
 ```
 atau
 
 ```sh
-$ wget https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/debian732kvm.sh && bash debian732kvm.sh
+$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian732kvm.sh && bash debian732kvm.sh
 ```
 Feature
 -------------
