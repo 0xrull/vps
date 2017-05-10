@@ -169,6 +169,8 @@ wget -O /usr/bin/bench "https://raw.githubusercontent.com/gidhanbagus/scriptjanc
 wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/autokill"
 wget -O /usr/bin/ram "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
 wget -O /usr/bin/autoreboot "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/reboot.sh"
+echo "cat /root/log-install.txt" | tee /usr/bin/tips
+echo "cat /root/log-reboot.txt" | tee /usr/bin/rebootinfo
 chmod +x /usr/bin/akun
 chmod +x /usr/bin/buat
 chmod +x /usr/bin/cek
@@ -180,6 +182,8 @@ chmod +x /usr/bin/speedtest
 chmod +x /usr/bin/ram
 chmod +x /usr/bin/autokill
 chmod +x /usr/bin/autoreboot
+chmod +x /usr/bin/tips
+chmod +x /usr/bin/rebootinfo
 
 # cron
 echo "0 0 * * * root /usr/bin/autoreboot" > /etc/cron.d/autoreboot
@@ -241,8 +245,8 @@ echo "Fail2Ban : [on]"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
 echo "Autokill Multilogin : [on]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "Log Installasi --> /root/log-install.txt"  | tee -a log-install.txt
-echo "Log Installasi --> /root/log-reboot.txt"  | tee -a log-install.txt
+echo "Tips Installasi --> tips"  | tee -a log-install.txt
+echo "Log Reboot --> rebootinfo"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Server By : Gidhan Bagus Algary"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
