@@ -1,15 +1,18 @@
 #!/bin/bash
 # Script Auto Installer By Gidhan Bagus Algary
-# www.algatekno.com
 
 # Banner SSH
-echo " | Selamat Datang Di Server Alga Tekno | " >> /etc/pesan
+echo " -=[ Selamat Datang Di Server Alga Tekno ]=- " >> /etc/pesan
 echo "Peraturan Menggunakan SSH : " >> /etc/pesan
 echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Spam, Torrent, dll | " >> /etc/pesan
-echo "2. Dilarang Multilogin, Jika Melanggar Akun Akan Di Blokir Otomatis Oleh Server | " >> /etc/pesan
-echo "Powered by Gidhan Bagus Algary | WA : 0895354663822 |" >> /etc/pesan
+echo "2. Dilarang Multilogin - Jika Melanggar, Akun Akan Di Blokir Otomatis Oleh Server | " >> /etc/pesan
+echo "Powered by Gidhan Bagus Algary ~ WA : 0895354663822 |" >> /etc/pesan
+echo "Copyright © 2017 - Alga Tekno" >> /etc/pesan
 
 echo "Banner /etc/pesan" >> /etc/ssh/sshd_config
+
+# update software
+apt-get update
 
 # go to root
 cd
@@ -19,7 +22,7 @@ echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
 # install wget and curl
-apt-get update;apt-get -y install wget curl;
+apt-get -y install wget curl
 
 # set time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -40,10 +43,17 @@ apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 
 # update
-apt-get update; apt-get -y upgrade;
+apt-get -y update
+apt-get -y upgrade
 
-# install webserver
-apt-get -y install nginx php5-fpm php5-cli
+# install mysql
+apt-get -y install mysql-server
+mysql_secure_installation
+chown -R mysql:mysql /var/lib/mysql/
+chmod -R 755 /var/lib/mysql/
+
+# download webserver
+apt-get -y install nginx php5-fpm php5-cli php5-mysql php5-mcrypt
 
 # install essential package
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter
@@ -78,8 +88,12 @@ echo "<pre>Server by Gidhan Bagus Algary | AlgaTekno.com" > /home/vps/public_htm
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/vps.conf"
 sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-service php5-fpm restart
-service nginx restart
+
+# setting webserver
+useradd -m vps && mkdir -p /home/vps/public_html
+rm /home/vps/public_html/index.html && echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
+chown -R www-data:www-data /home/vps/public_html && chmod -R g+rw /home/vps/public_html
+service php5-fpm restart && service nginx restart
 
 # install badvpn
 wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/badvpn-udpgw"
@@ -140,10 +154,9 @@ apt-get -y install fail2ban
 service fail2ban restart
 
 # install squid3
-apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/squid3.conf"
-sed -i $MYIP2 /etc/squid3/squid.conf;
-service squid3 restart
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok3/master/squid3.sh
+chmod 100 squid3.sh
+./squid3.sh
 
 # install webmin
 cd
@@ -166,6 +179,7 @@ wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/gidhanbagus/script
 wget -O /usr/bin/bench "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/bench-network.sh"
 wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/autokill"
 wget -O /usr/bin/ram "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
+wget -O /usr/bin/autoreboot "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/reboot.sh"
 chmod +x /usr/bin/akun
 chmod +x /usr/bin/buat
 chmod +x /usr/bin/cek
@@ -178,8 +192,8 @@ chmod +x /usr/bin/ram
 chmod +x /usr/bin/autokill
 
 # cron
-echo "0 */12 * * * root /usr/bin/reboot" > /etc/cron.d/reboot
-echo "0 */12 * * * root /usr/bin/gusur" > /etc/cron.d/gusur
+echo "0 0 * * * root /usr/bin/autoreboot" > /etc/cron.d/autoreboot
+echo "0 0 * * * root /usr/bin/gusur" > /etc/cron.d/gusur
 echo "* * * * * root /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 5; /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 15; /usr/bin/autokill" > /etc/cron.d/autokill
@@ -202,7 +216,6 @@ service snmpd restart
 service ssh restart
 service dropbear restart
 service fail2ban restart
-service squid3 restart
 service webmin restart
 
 # info
@@ -224,6 +237,7 @@ echo "buat : untuk membuat user ssh tunnel baru"  | tee -a log-install.txt
 echo "cek : untuk melihat siapa saja yang sedang aktif"  | tee -a log-install.txt
 echo "gusur : untuk menghapus user yang masa aktifnya sudah habis"  | tee -a log-install.txt
 echo "trial : untuk membuat akun trial"  | tee -a log-install.txt
+echo "autokill : untuk kill user yang multilogin"  | tee -a log-install.txt
 echo "speedtest : untuk tes speed vps"  | tee -a log-install.txt
 echo "ram : untuk melihat pemakaian ram vps"  | tee -a log-install.txt
 echo "bench : untuk melihat performa vps"  | tee -a log-install.txt
@@ -239,6 +253,7 @@ echo "IPv6     : [off]"  | tee -a log-install.txt
 echo "Autokill Multilogin : [on]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Log Installasi --> /root/log-install.txt"  | tee -a log-install.txt
+echo "Log Installasi --> /root/log-reboot.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Server By : Gidhan Bagus Algary"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
