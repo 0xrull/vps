@@ -5,7 +5,7 @@
 echo " -=[ Selamat Datang Di Server Alga Tekno ]=- " >> /etc/pesan
 echo "Peraturan Menggunakan SSH : " >> /etc/pesan
 echo "1. Dilarang Keras Menggunakan SSH Untuk DDoS, Hacking, Spam, Torrent, dll | " >> /etc/pesan
-echo "2. Dilarang Multilogin - Jika Melanggar, Akun Akan Di Blokir Otomatis Oleh Server | " >> /etc/pesan
+echo "2. Dilarang Multilogin, Maks Login Hanya 1 Bitvise |  " >> /etc/pesan
 echo "Powered by Gidhan Bagus Algary ~ WA : 0895354663822 |" >> /etc/pesan
 echo "Copyright © 2017 - Alga Tekno" >> /etc/pesan
 
@@ -130,7 +130,6 @@ apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80 -p 109 -p 110"/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_BANNER="etc/pesan"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 service ssh restart
 service dropbear restart
@@ -170,8 +169,8 @@ service vnstat restart
 # download script
 cd
 wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/akun"
-wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/buat"
-wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/cek"
+wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/user-new.sh"
+wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptjancok3/master/user-login.sh"
 wget -O /usr/bin/gusur "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/gusur"
 wget -O /usr/bin/trial "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/user-trial.sh"
 wget -O speedtest.py "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
