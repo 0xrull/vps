@@ -158,7 +158,7 @@ service vnstat restart
 
 # download script
 cd
-wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/akun"
+wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/user-list.sh"
 wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/user-new.sh"
 wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptjancok3/master/user-login.sh"
 wget -O /usr/bin/gusur "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/gusur"
