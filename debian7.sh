@@ -143,7 +143,7 @@ apt-get -y install fail2ban
 service fail2ban restart
 
 # install squid3
-wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok3/master/squid3.sh
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/squid3.sh
 chmod 100 squid3.sh
 ./squid3.sh
 
@@ -158,17 +158,17 @@ service vnstat restart
 
 # download script
 cd
-wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/user-list.sh"
-wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/user-new.sh"
-wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptjancok3/master/user-login.sh"
-wget -O /usr/bin/gusur "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/gusur"
-wget -O /usr/bin/trial "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/user-trial.sh"
+wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-list.sh"
+wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-new.sh"
+wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-login.sh"
+wget -O /usr/bin/gusur "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/gusur"
+wget -O /usr/bin/trial "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-trial.sh"
 wget -O speedtest.py "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
-wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/speedtest.sh"
-wget -O /usr/bin/bench "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/bench-network.sh"
-wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/autokill"
+wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/speedtest.sh"
+wget -O /usr/bin/bench "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/conf/bench-network.sh"
+wget -O /usr/bin/autokill "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/autokill"
 wget -O /usr/bin/ram "https://raw.github.com/pixelb/ps_mem/master/ps_mem.py"
-wget -O /usr/bin/autoreboot "https://raw.githubusercontent.com/gidhanbagus/scriptjancok2/master/reboot.sh"
+wget -O /usr/bin/autoreboot "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/reboot.sh"
 chmod +x /usr/bin/akun
 chmod +x /usr/bin/buat
 chmod +x /usr/bin/cek
@@ -179,6 +179,7 @@ chmod +x speedtest.py
 chmod +x /usr/bin/speedtest
 chmod +x /usr/bin/ram
 chmod +x /usr/bin/autokill
+chmod +x /usr/bin/autoreboot
 
 # cron
 echo "0 0 * * * root /usr/bin/autoreboot" > /etc/cron.d/autoreboot
