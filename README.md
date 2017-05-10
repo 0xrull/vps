@@ -17,13 +17,13 @@ Installation
 -------------
 Untuk instalasi script silahkan jalankan perintah berikut:
 ```sh
-$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian732kvm.sh
-$ bash debian732kvm.sh
+$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian7.sh
+$ bash debian7.sh
 ```
 atau
 
 ```sh
-$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian732kvm.sh && bash debian732kvm.sh
+$ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/debian7.sh && bash debian7.sh
 ```
 Feature
 -------------
@@ -35,8 +35,8 @@ Layanan yang diaktifkan pada script ini:
  - **SquidProxy**    : 8080, 3128 (limit to IP SSH)
  - **badvpn**   : badvpn-udpgw port 7300
  - **Webmin**   : http://IP:10000/
- - **vnstat**   : http://IP:81/vnstat/
- - **MRTG**     : http://IP:81/mrtg/
+ - **vnstat**   : http://IP/vnstat/
+ - **MRTG**     : http://IP/mrtg/
  - **Timezone** : Asia/Jakarta
  - **Fail2Ban** : [on]
  - **IPv6**     : [off]
@@ -47,10 +47,14 @@ Beberapa fitur yang tersedia saat ini:
  - **akun** : untuk melihat daftar akun beserta masa aktifnya,
  - **buat** : untuk membuat akun baru,
  - **cek** : untuk melihat user yang sedang login,
- - **userdelete (nama akun)** : untuk menghapus akun ssh | cth : userdelete gidhan,
+ - **userdel (nama akun)** : untuk menghapus akun ssh | cth : userdelete gidhan,
  - **gusur** : untuk menghapus user yang sudah expired,
  - **trial** : untuk membuat akun trial selama 1 hari,
- - **speedtest** : untuk cek speed vps,
+ - **autokill** : untuk kill user yang multilogin,
+ - **speedtest** : untuk tes speed vps,
+ - **ram** : untuk melihat pemakaian ram vps,
+ - **bench** : untuk melihat performa vps,
+
 
 Beberapa alat atau tools yang dapat Anda gunakan:
 <pre>axel, bmon, htop, iftop, mtr, nethogs</pre>
