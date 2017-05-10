@@ -46,14 +46,8 @@ apt-get -y --purge remove bind9*;
 apt-get -y update
 apt-get -y upgrade
 
-# install mysql
-apt-get -y install mysql-server
-mysql_secure_installation
-chown -R mysql:mysql /var/lib/mysql/
-chmod -R 755 /var/lib/mysql/
-
 # download webserver
-apt-get -y install nginx php5-fpm php5-cli php5-mysql php5-mcrypt
+apt-get -y install nginx php5-fpm php5-cli
 
 # install essential package
 apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter
@@ -82,18 +76,14 @@ echo "screenfetch" >> .profile
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/conf/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Server by Gidhan Bagus Algary | AlgaTekno.com" > /home/vps/public_html/index.html
+echo "<pre>Setup by Gidhan Bagus Algary" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/conf/vps.conf"
 sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-
-# setting webserver
-useradd -m vps && mkdir -p /home/vps/public_html
-rm /home/vps/public_html/index.html && echo "<?php phpinfo() ?>" > /home/vps/public_html/info.php
-chown -R www-data:www-data /home/vps/public_html && chmod -R g+rw /home/vps/public_html
-service php5-fpm restart && service nginx restart
+service php5-fpm restart
+service nginx restart
 
 # install badvpn
 wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/badvpn-udpgw"
