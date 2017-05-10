@@ -207,7 +207,6 @@ echo "* * * * * root sleep 50; /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 55; /usr/bin/autokill" > /etc/cron.d/autokill
 
 # finalisasi
-chown -R www-data:www-data /home/vps/public_html
 service cron restart
 service nginx start
 service php-fpm start
