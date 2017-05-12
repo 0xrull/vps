@@ -187,7 +187,7 @@ chmod +x /usr/bin/rebootinfo
 
 # cron
 echo "0 0 * * * root /usr/bin/autoreboot" > /etc/cron.d/autoreboot
-echo "0 0 * * * root /usr/bin/gusur" > /etc/cron.d/gusur
+echo "0 0 * * * root /usr/bin/gusur" > /etc/crontab
 echo "* * * * * root /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 5; /usr/bin/autokill" > /etc/cron.d/autokill
 echo "* * * * * root sleep 15; /usr/bin/autokill" > /etc/cron.d/autokill
