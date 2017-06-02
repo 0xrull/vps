@@ -33,6 +33,13 @@ apt-get -y --purge remove apache2*;
 apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 
+# install screenfetch
+wget https://github.com/KittyKatt/screenFetch/raw/master/screenfetch-dev
+mv screenfetch-dev /usr/bin/screenfetch
+chmod +x /usr/bin/screenfetch
+echo "clear" >> .profile
+echo "screenfetch" >> .profile
+
 # set repo
 wget https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/sources.list.debian7
 cp -f source.listdo /etc/apt/sources.list
@@ -41,41 +48,20 @@ cp -f source.listdo /etc/apt/sources.list
 wget http://www.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
 
-# update
+# install webmin
 apt-get -y update
+apt-get -y install webmin
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/miniserv.conf
+cp -f miniserv.conf /etc/webmin/miniserv.conf
 
-# disable exim
-service exim4 stop
-sysv-rc-conf exim4 off
-
-# install screenfetch
-cd
-wget https://github.com/KittyKatt/screenFetch/raw/master/screenfetch-dev
-mv screenfetch-dev /usr/bin/screenfetch
-chmod +x /usr/bin/screenfetch
-echo "clear" >> .profile
-echo "screenfetch" >> .profile
-
-# install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/badvpn-udpgw"
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
-
-# setting port ssh
-sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
-service ssh restart
+# setting openssh
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/sshd_config
+cp -f sshd_config /etc/ssh/sshd_config
 
 # install dropbear
 apt-get -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80 -p 109 -p 110"/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_BANNER=""/DROPBEAR_BANNER="/etc/pesan"/g' /etc/default/dropbear
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/dropbear
 echo "/bin/false" >> /etc/shells
-service ssh restart
-service dropbear restart
 
 # install fail2ban
 apt-get -y install fail2ban
@@ -86,17 +72,17 @@ wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/squid3.sh
 chmod 100 squid3.sh
 ./squid3.sh
 
-# install webmin
-cd
-wget "http://prdownloads.sourceforge.net/webadmin/webmin_1.840_all.deb"
-dpkg --install webmin_1.840_all.deb
-apt-get -y -f install;
-rm /root/webmin_1.840_all.deb
-sed -i -e 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-service webmin restart
+# setting profile
+wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/profile
+cp -f profile /etc/profile
+
+# install badvpn
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/gidhanbagus/scriptdebian/master/conf/badvpn-udpgw"
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
+chmod +x /usr/bin/badvpn-udpgw
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # download script
-cd
 wget -O /usr/bin/akun "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-list.sh"
 wget -O /usr/bin/buat "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-new.sh"
 wget -O /usr/bin/cek "https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/user-login.sh"
@@ -183,4 +169,4 @@ echo "--------------------------------------"  | tee -a log-install.txt
 echo "VPS AUTO REBOOT SETIAP 24 JAM !"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "===============================================" | tee -a log-install.txt
-rm -f /root/debian7.sh
+rm -f sshd_config dropbear jcameron-key.asc miniserv.conf source.list profile debian7.sh
