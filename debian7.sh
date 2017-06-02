@@ -61,6 +61,7 @@ cp -f sshd_config /etc/ssh/sshd_config
 # install dropbear
 apt-get -y install dropbear
 wget https://raw.githubusercontent.com/gidhanbagus/scriptjancok/master/dropbear
+cp -f dropbear /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 
 # install fail2ban
